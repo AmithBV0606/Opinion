@@ -1,3 +1,4 @@
+from pydoc import text
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Tweet
 from .forms import TweetForm, UserRegistrationForm
@@ -59,3 +60,8 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'registration/register.html', { 'form': form })
+
+def search(request):
+    search_text = request.POST.get('search', '')
+    tweets = Tweet.objects.filter(text__icontains=search_text)
+    return render(request, 'search.html', { 'tweets': tweets })

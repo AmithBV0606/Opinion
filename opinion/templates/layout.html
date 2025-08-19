@@ -47,10 +47,11 @@
               </li>
             </ul>
 
-            {% comment %} <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <form class="d-flex" method="POST" action="{% url 'search' %}">
+              {% csrf_token %}
+              <input class="form-control me-2" placeholder="Search"  name="search"/>
               <button class="btn btn-outline-success" type="submit">Search</button>
-            </form> {% endcomment %}
+            </form> 
 
             <a href="{% url 'tweet_list' %}" class="btn btn-primary mx-2">Home</a>
 
